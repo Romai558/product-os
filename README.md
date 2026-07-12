@@ -2,6 +2,12 @@
 
 Workflow PM complet orchestré par agents Claude Code — 15 skills couvrant discovery, un commitment gate explicite, delivery séquentiel strict, et post-ship. Conçu pour tourner comme méthodologie, pas comme suite de documents.
 
+> **Statut : v1 expérimentale.** Architecture stabilisée après plusieurs passes de conception, actuellement en phase de validation par usage réel — aucune initiative n'a encore traversé le pipeline de bout en bout en conditions réelles. Structuré et cohérent (linté automatiquement), mais pas encore éprouvé à l'usage. À tester, pas à adopter les yeux fermés.
+
+## Exemple
+
+[`examples/onboarding-saas/`](examples/onboarding-saas/) — un cas fictif mais réaliste (activation onboarding d'un SaaS B2B) qui traverse 4 étapes du pipeline (commitment gate → success metrics → solution exploration → PRD) et montre concrètement comment un fichier hérite de ce que le précédent a tranché, sans le redéfinir.
+
 ## Pourquoi
 
 La plupart des workflows "PM + IA" traitent la discovery et la delivery de la même façon : une chaîne linéaire de documents. Product OS part d'un principe différent :
@@ -28,6 +34,8 @@ python3 tools/product-os/lint-pm-skills.py
 ```
 
 Vérifie la présence des 5 champs de header standardisé sur chaque skill, les références à des fichiers/skills inexistants, les collisions de numérotation, et la cohérence bidirectionnelle skills ↔ index. Voir [`CONTRIBUTING.md`](CONTRIBUTING.md) pour le mécanisme d'annotation `lint-ok`.
+
+Tourne aussi automatiquement en CI sur chaque push et pull request ([`.github/workflows/lint.yml`](.github/workflows/lint.yml)).
 
 ## Gouvernance
 
