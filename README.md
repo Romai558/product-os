@@ -213,7 +213,6 @@ Product OS s'appuie notamment sur :
 - **Teresa Torres** — Continuous Discovery et Opportunity-Solution Trees
 - **Marty Cagan** — Value, Usability, Feasibility, Viability risks
 - **Gibson Biddle** — DHM : Delight, Hard-to-copy, Margin-enhancing
-- **Marion Jachimski** — pattern d'agents spécialisés pour la delivery
 - **[phuryn/pm-skills](https://github.com/phuryn/pm-skills)** — plusieurs patterns opérationnels PM
 
 L'historique des décisions d'architecture est disponible dans [`CHANGELOG.md`](CHANGELOG.md).
