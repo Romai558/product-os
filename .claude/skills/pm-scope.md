@@ -1,5 +1,11 @@
 # Skill — /pm-scope
 
+**Rôle dans le Product OS**
+
+**Phase :** Delivery (séquencement strict) — étape 2, après le PRD approuvé.
+**Question produit :** Quelles unités de valeur livrer, dans quel ordre, avec quels tradeoffs et risques assumés ?
+**Décision ou résultat produit :** User stories priorisées + critères d'acceptation Gherkin + pre-mortem, tradeoffs arbitrés par le PM.
+
 **Décision** : quelles unités de valeur livrer, dans quel ordre, avec quels tradeoffs et risques assumés.
 **Entrées** : `03-prd.md` (approved) ; `product-facts.md` ; `evidence-register.md`
 **Sortie** : `outputs/specs/[feature]/04-scope.md`
@@ -10,18 +16,12 @@
 
 > Input obligatoire = PRD **validé**. Ne pas lancer sur un draft non arbitré.
 
-## Déclencheur
+**Utiliser quand** (`/pm-scope [chemin PRD validé]`, après relecture et arbitrage PM du PRD) :
+- Le PRD est `approved` — l'ordre `/pm-commitment-gate` → `/pm-success-metrics` → `/pm-solution-exploration` → `/pm-prd` → `/pm-scope` garantit que l'outcome et l'approche sont déjà posés, pas besoin de re-vérifier séparément.
 
-- `/pm-scope [chemin PRD validé]`
-- Après relecture et arbitrage PM du PRD (`03-prd.md`)
-
-## Pré-requis
-
-- `outputs/specs/[feature]/03-prd.md` — **statut `approved`**
-- `tools/product-os/context/product-facts.md` — pour les contraintes tech et décisions structurantes
-- `tools/product-os/context/evidence-register.md` — hypothèses FEA/VIA encore ouvertes à surfacer dans les tradeoffs
-
-**L'ordre `/pm-commitment-gate` → `/pm-success-metrics` → `/pm-solution-exploration` → `/pm-prd` → `/pm-scope` garantit que l'outcome et l'approche sont déjà posés** (chargés dans le PRD, pas besoin de re-vérifier séparément que `01-success-metrics.md`/`02-solution-exploration.md` existent). Si le PRD source n'est pas `approved` : refuser de s'exécuter, renvoyer vers l'arbitrage PM du PRD.
+**Ne pas utiliser quand** :
+- Le PRD n'est pas encore `approved` → attendre l'arbitrage PM, ne pas lancer sur un draft.
+- On cherche encore à comparer des approches de solution → c'est `/pm-solution-exploration`, en amont.
 
 ## Place dans le pipeline
 

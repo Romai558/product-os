@@ -1,5 +1,11 @@
 # Skill — /pm-data-analysis
 
+**Rôle dans le Product OS**
+
+**Phase :** Post-ship — ferme la boucle d'apprentissage, nourrit la discovery suivante.
+**Question produit :** Les résultats post-ship justifient-ils de continuer, itérer, scaler, ou faire un rollback ?
+**Décision ou résultat produit :** STOP / ITERATE / SCALE / ROLLBACK, avec les 4 fichiers mémoire systématiquement vérifiés.
+
 **Décision** : stop / iterate / scale / rollback, mémoire produit mise à jour en conséquence.
 **Entrées** : `01-success-metrics.md` ; accès BI (Metabase/Mixpanel/Amplitude/SQL) ; résultats A/B bruts si applicable ; feedback qualitatif post-ship
 **Sortie** : `outputs/specs/[feature]/08-data-analysis.md`
@@ -10,19 +16,16 @@
 
 Sources : inspiré de phuryn/pm-skills (ab-test-analysis + sql-queries).
 
-## Déclencheur
+**Utiliser quand** (`/pm-data-analysis [feature ou question]`) :
+- Post-ship, pour mesurer l'impact réel d'une feature livrée.
+- Un A/B test doit être arbitré, ou une question business nécessite une requête SQL ad hoc.
 
-- `/pm-data-analysis [feature ou question]`
-- Post-ship pour mesurer l'impact d'une feature
-- Quand un A/B test doit être arbitré
-- Quand une question business nécessite une requête SQL
+**Ne pas utiliser quand** :
+- On veut poser l'objectif de mesure en amont d'un ship → c'est `/pm-success-metrics`, cette skill mesure après coup, elle ne définit pas l'outcome.
 
 ## Pré-requis
 
-- Accès à l'outil BI (Metabase, Mixpanel, Amplitude, SQL direct…)
-- `outputs/specs/[feature]/01-success-metrics.md` — **l'objectif de mesure posé ici, pas dans le PRD** (le PRD ne fait que le charger, il ne le redéfinit pas) — ou à préciser si l'initiative n'est pas passée par le pipeline complet
-- Pour A/B test : résultats bruts (conversions, impressions, durée test)
-- Optionnel : `outputs/interviews/insights-*.md` postérieurs au ship — feedback qualitatif
+Si l'initiative n'est pas passée par le pipeline complet (question ad hoc, dashboard, audit) : préciser les métriques cibles directement plutôt que de les charger depuis `01-success-metrics.md`.
 
 ## Place dans le pipeline
 

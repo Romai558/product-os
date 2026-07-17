@@ -1,5 +1,11 @@
 # Skill — /pm-commitment-gate
 
+**Rôle dans le Product OS**
+
+**Phase :** Commitment Gate — le seul point de passage entre la boucle discovery et le séquencement strict de delivery (cf. [`index.md`](../../tools/product-os/index.md) pour le pipeline complet).
+**Question produit :** A-t-on assez appris pour s'engager sur cette initiative, ou faut-il continuer d'apprendre avant de trancher ?
+**Décision ou résultat produit :** Kill (archiver, raison tracée), Investigate (retour en discovery avec une action ciblée nommée), ou Commit (entrée en séquencement delivery).
+
 **Décision** : kill / investigate / commit.
 **Entrées** : sortie `/pm-prioritize` (candidat + hypothèse initiale) ; artefacts de la boucle discovery ; `evidence-register.md` ; `product-strategy.md` ; `product-facts.md`
 **Sortie** : `outputs/specs/[feature]/00-commitment-gate.md`
@@ -10,10 +16,14 @@
 
 > C'est ici, pas plus tard, que se fait le tri entre "on a assez appris pour s'engager" et "on doit encore apprendre". Une fois `commit` posé, le séquencement strict démarre — ne plus revenir en arrière sans repasser explicitement par ce gate.
 
-## Déclencheur
+**Utiliser quand** (`/pm-commitment-gate [initiative]`, à la fin d'un tour de boucle discovery) :
+- Un tour de boucle discovery vient de produire assez de matière (priorisation, interviews, evidence-register) pour se poser sérieusement la question "on s'engage ou pas".
+- Le doute "est-ce qu'on en sait assez" devient lui-même coûteux (delivery qui piétine, discovery qui tourne en rond sans jamais trancher).
 
-- `/pm-commitment-gate [initiative]`
-- À la fin d'un tour de boucle discovery, quand la question "on arrête, on creuse encore, ou on s'engage ?" se pose concrètement
+**Ne pas utiliser quand** :
+- La boucle discovery démarre à peine et `evidence-register.md` n'a presque rien à évaluer → repasser par `/pm-prioritize` ou `/pm-interview-insights` d'abord.
+- Une initiative déjà `commit` a seulement besoin d'un ajustement de scope, pas d'un nouveau vote d'engagement → c'est `/pm-scope`, pas ce gate.
+- La question est "quelle solution retenir", pas "s'engager sur le problème" → le choix de solution vient après ce gate, dans `/pm-solution-exploration`.
 
 ## Pré-requis
 
@@ -147,3 +157,16 @@ Justification : [2-3 lignes]
 - **Le strategic fit n'est pas un tampon automatique** — si la majorité des 5 sous-questions est faible/non vérifiée, ne pas recommander `commit` seulement parce que l'evidence strength est bonne.
 - **`what happens if we do nothing` n'est jamais laissé vide** — nommer le scénario, même s'il est "rien de grave à court terme".
 - **Confiance globale = Low/Medium/High justifié, jamais un pourcentage** — la justification doit citer qualité/diversité/convergence, pas un chiffre qui simule une précision qu'on n'a pas.
+
+## Exemple
+
+[`examples/onboarding-saas/00-commitment-gate.md`](../../examples/onboarding-saas/00-commitment-gate.md) : deux signaux convergents (activation stagnante à 55% + tickets support en hausse) évalués sur les 6 étapes ci-dessus → **COMMIT**, confiance **Medium** (justifiée par la convergence business/user, plafonnée par une hypothèse Usability pas encore observée en usage réel).
+
+## Limites & responsabilité humaine
+
+L'agent instruit le dossier, il ne tranche pas. Trois rôles, potentiellement tenus par une seule personne en usage solo :
+- **Contributeurs** — apportent les preuves consolidées dans `evidence-register.md`
+- **Propriétaire du processus** — prépare et documente la recommandation (evidence strength, DHM, cost of delay, next learning step)
+- **Propriétaire de la décision** — tranche KILL/INVESTIGATE/COMMIT selon la gouvernance de l'organisation (le PM en solo ; un Product Leader ou un comité en équipe, selon le mandat)
+
+Quel que soit qui tranche, aucune sortie n'est acceptée sans relecture explicite du raisonnement, pas seulement du verdict — c'est le point d'engagement le plus lourd de conséquences du pipeline.

@@ -3,13 +3,13 @@
 > Workflow PM complet orchestré par agents. Skills dans `.claude/skills/pm-*.md`.
 > Mémoire organisationnelle : `tools/product-os/context/product-facts.md` + `product-strategy.md` + `evidence-register.md` + `decision-log.md` — à remplir avant d'utiliser les agents.
 >
-> Discovery en boucle (pas de chaîne stricte), artefacts discovery sélectionnés selon l'incertitude à réduire, commitment gate explicite entre discovery et delivery (avec synthèse de confiance Low/Medium/High), metrics posées avant le PRD, `/pm-solution-exploration` insérée entre metrics et PRD (le PRD ne choisit plus la solution, il la consolide), statuts de preuve nuancés (plus de blocage binaire `needs-evidence`), mémoire éclatée en 4 fichiers, Launch Readiness en checklist dédiée, `/pm-sprint-plan` sorti du séquencement numéroté, gate solution-encore-valide entre prototype et tickets, post-ship fermant explicitement la boucle sur les 4 fichiers mémoire, header standardisé (Décision/Entrées/Sortie/Bloque si/Met à jour) sur chaque skill. Historique complet des décisions de design : `CHANGELOG.md`.
+> Discovery en boucle (pas de chaîne stricte), artefacts discovery sélectionnés selon l'incertitude à réduire, commitment gate explicite entre discovery et delivery (avec synthèse de confiance Low/Medium/High), metrics posées avant le PRD, `/pm-solution-exploration` entre metrics et PRD (le PRD consolide la solution, il ne la choisit pas), statuts de preuve nuancés, mémoire éclatée en 4 fichiers, Launch Readiness en checklist dédiée, `/pm-sprint-plan` en branche annexe non numérotée, gate solution-encore-valide entre prototype et tickets, post-ship fermant la boucle sur les 4 fichiers mémoire, header standardisé (Décision/Entrées/Sortie/Bloque si/Met à jour) sur chaque skill. Historique des décisions de design : `CHANGELOG.md`.
 
 ---
 
 ## Ce fichier est la source de vérité
 
-Pipeline à jour, skills, statuts de preuve, structure de fichiers, gouvernance des évolutions — tout est ici. Si une information doit être mise à jour, elle se met à jour ici en premier. Le `README.md` explique comment démarrer ; `CHANGELOG.md` garde l'historique des décisions de design déjà prises (append-only, jamais réécrit).
+Source canonique opératoire du Product OS pour six choses : le **pipeline détaillé** (§ Pipeline complet et les tableaux par phase), les **statuts de preuve** (§ Statuts de preuve), les **transitions de vocabulaire** entre signal / opportunité / initiative / solution / scope / ticket / release (§ Glossaire), les **familles de décisions** KILL/INVESTIGATE/COMMIT et STOP/ITERATE/SCALE/ROLLBACK (§ Glossaire), la **gouvernance des évolutions** (§ Gouvernance des évolutions) et le **format technique des skills** (§ Header standardisé). Si une information doit être mise à jour, elle se met à jour ici en premier. Le `README.md` est la vue exécutive (proposition de valeur, carte de lecture, portes d'entrée) ; `CHANGELOG.md` garde l'historique des décisions de design déjà prises (append-only, jamais réécrit).
 
 ---
 
@@ -26,6 +26,66 @@ Chaque fichier `.claude/skills/pm-*.md` ouvre sur 5 champs, avant toute descript
 ```
 
 Test de garde-fou : si une skill ne peut pas se résumer en une phrase "Cette skill décide...", son découpage ou son périmètre doit être challengé avant d'être ajoutée ou modifiée.
+
+### `Ne pas utiliser quand` vs `Bloque si`
+
+Deux sections apparaissent dans plusieurs skills, à ne pas confondre :
+
+- **`Ne pas utiliser quand`** — la skill n'est pas la bonne capacité pour ce besoin. Le problème est un mauvais choix de skill ; la solution est d'en appeler une autre (nommée dans la section).
+- **`Bloque si`** (champ du header standardisé) — la skill est la bonne capacité, mais les conditions minimales d'exécution ne sont pas réunies. Le problème est un manque de préparation ; la solution est de satisfaire la condition puis de rappeler la même skill.
+
+---
+
+## Glossaire
+
+Ce glossaire explique les termes utilisés dans les skills et leurs statuts — il ne les traduit pas et ne les uniformise pas artificiellement. Plusieurs désignent des décisions ou des niveaux d'abstraction réellement différents ; les rapprocher sert à les situer les uns par rapport aux autres, pas à les fusionner.
+
+### Trios de décision
+
+| Trio | Où | Sens de chaque valeur |
+|---|---|---|
+| **KILL / INVESTIGATE / COMMIT** | `/pm-commitment-gate` | `KILL` = archiver, raison tracée dans `decision-log.md`. `INVESTIGATE` = retour **ciblé** à la boucle discovery, avec le "cheapest next learning step" nommé — pas un redémarrage complet. `COMMIT` = entrée dans le séquencement strict de delivery. |
+| **STOP / ITERATE / SCALE / ROLLBACK** | `/pm-data-analysis` | `STOP` = la feature reste en l'état, on arrête d'investir dessus sans la retirer. `ITERATE` = résultats mixtes, prochaine hypothèse à formuler. `SCALE` = déployer à 100 % / à plus de segments. `ROLLBACK` = retrait recommandé, résultats négatifs sur métriques primaires ou guardrails. |
+
+Ces deux trios ne sont pas interchangeables : le premier statue sur l'engagement avant toute construction, le second sur la suite à donner une fois des données réelles disponibles.
+
+### Statuts de preuve
+
+Cf. § Statuts de preuve ci-dessous — distincts du niveau de confiance (`documented` / `research` / `verbal` / `intuition`, cf. `CLAUDE.md` § Provenance des claims).
+
+### DHM (Gibson Biddle)
+
+Utilisé dans `/pm-commitment-gate` § Strategic fit, pour ne pas committer sur la seule force de l'evidence :
+
+- **Delight** — l'avantage différenciant que ça renforce pour l'utilisateur
+- **Hard-to-copy** — la capacité difficile à répliquer que ça construit
+- **Margin-enhancing** — l'impact économique attendu (revenu, coût, marge)
+
+### Frameworks de priorisation (`/pm-prioritize`)
+
+| Framework | Principe | Quand |
+|---|---|---|
+| **ICE** | Impact × Confidence × Ease (multiplicatif, pas une moyenne) | Défaut, sans donnée d'usage fiable |
+| **RICE** | Reach × Impact × Confidence / Effort | Reach fiable et période comparable |
+| **Value-Effort** | Grille 2×2, pas de score numérique | Premier tri grossier sur un gros lot de candidats |
+| **Scorecard** | Critères pondérés custom | Décision qui dépend de contraintes stratégiques spécifiques |
+
+Arbre de décision complet entre les 4 : `pm-prioritize.md` § Choix du framework. Kano et WSJF sont explicitement exclus (hors scope solo, pas de board à convaincre). **MoSCoW n'est pas un framework de priorisation ici** — c'est le vocabulaire de `/pm-scope` (Must/Should/Nice-to-have/Won't) pour le scope d'une feature déjà choisie, pas le tri entre candidats.
+
+### Transitions de vocabulaire le long du pipeline
+
+Le même référent change de nom selon l'étape — ce n'est pas une incohérence à corriger, mais un changement d'altitude qui reflète l'avancement réel de la décision :
+
+| Terme | Où il apparaît | Ce qu'il désigne |
+|---|---|---|
+| **Signal** | Entrée de `/pm-market-analysis` | Le déclencheur brut (retour client, move concurrent) — pas encore qualifié |
+| **Opportunité** | Sortie de `/pm-market-analysis`, `/pm-prioritize` | Un signal qualifié, formulé en problème/outcome, candidat à la boucle discovery |
+| **Initiative** | À partir de `/pm-commitment-gate` | Une opportunité qui a passé le commitment gate — même objet, après engagement |
+| **Approche / Solution** | `/pm-solution-exploration`, `/pm-prd` | Une façon précise de répondre à l'initiative, comparée à d'autres avant d'être retenue |
+| **Scope** | `/pm-scope` | Le découpage de l'approche retenue en unités de valeur livrables (user stories) |
+| **Ticket** | `/pm-tickets` | Une unité de travail assignable à la Tech, dérivée du scope |
+| **Release** | `/pm-release` | L'événement de mise en production, avec sa communication |
+| **`[feature]`** (token de chemin) | `outputs/specs/[feature]/...` | Historique — cf. § Le token `[feature]` : désigne le slug de l'initiative, pas une feature déjà décidée |
 
 ---
 
@@ -52,7 +112,7 @@ Objectif : éviter de concevoir des solutions à des problèmes qui n'existent p
 |---|---|---|---|---|
 | Market Analysis | `/pm-market-analysis` | Signal marché / retour client | `outputs/discovery/market-[sujet]-YYYY-MM-DD.md` | Oui — première étape |
 | Prioritize | `/pm-prioritize` | Plusieurs opportunités candidates | `outputs/discovery/prioritize-YYYY-MM-DD.md` — choisit l'opportunité qui entre dans la boucle discovery + recommande un artefact discovery initial ; rappelable pendant la boucle | Oui, rappelable |
-| Interview Insights | `/pm-interview-insights` | Transcript user interview | `outputs/interviews/insights-YYYY-MM-DD-[participant].md` — inclut la détection d'écart dit/fait (ex-`/pm-empathy-mapping`, fusionnée) <!-- lint-ok: référence historique, /pm-empathy-mapping supprimée et fusionnée ici --> | Oui si des entretiens sont disponibles, répétable |
+| Interview Insights | `/pm-interview-insights` | Transcript user interview | `outputs/interviews/insights-YYYY-MM-DD-[participant].md` — inclut la détection d'écart dit/fait à chaque entretien | Oui si des entretiens sont disponibles, répétable |
 | UX Personas | `/pm-ux-personas` | Insights structurés | `outputs/discovery/personas-[segment]-YYYY-MM-DD.md` | **Conditionnel** — cf. § Sélection d'artefact |
 | Journey Mapping | `/pm-journey-mapping` | Persona + scénario | `outputs/discovery/journey-map-[persona]-[scenario]-YYYY-MM-DD.md` | **Conditionnel** — cf. § Sélection d'artefact |
 
@@ -64,7 +124,7 @@ Persona et journey map ne sont pas enchaînés par défaut. Avant de lancer l'un
 |---|---|---|
 | "Qui" — segments hétérogènes pas encore caractérisés | Persona (`/pm-ux-personas`) | Construit |
 | "Pourquoi" — motivation/objectif sous-jacent, pas le profil | JTBD | À construire |
-| Écart entre ce qui est dit et ce qui est fait | Capturé dans `/pm-interview-insights` § Écart dit/fait, à chaque entretien | Construit (fusionné, ex-`/pm-empathy-mapping`) <!-- lint-ok: référence historique, /pm-empathy-mapping supprimée et fusionnée ici --> |
+| Écart entre ce qui est dit et ce qui est fait | Capturé dans `/pm-interview-insights` § Écart dit/fait, à chaque entretien | Construit |
 | "Où" dans un parcours multi-étapes la friction apparaît | Journey Map (`/pm-journey-mapping`) | Construit |
 | Expérience traversant plusieurs équipes/systèmes (front-stage/back-stage) | Service Blueprint | À construire |
 | Workflow professionnel interne multi-outils (contexte B2B/ops) | Workflow Map | À construire |
@@ -72,7 +132,7 @@ Persona et journey map ne sont pas enchaînés par défaut. Avant de lancer l'un
 
 **Pas de skill de sélection dédiée** — arbitrage jugé trop léger pour justifier une skill séparée. La recommandation initiale est faite par `/pm-prioritize` (champ "Artefact discovery recommandé"), révisable pendant la boucle selon ce que les entretiens révèlent.
 
-JTBD, Service Blueprint et Workflow Map n'ont pas encore de skill dédiée — même convention que `/pm-story-mapping` déjà référencée comme "à construire" dans `pm-journey-mapping.md`. Construction différée, pas dans le périmètre actuel. <!-- lint-ok: référence prospective, /pm-story-mapping n'existe pas encore -->
+JTBD, Service Blueprint et Workflow Map n'ont pas encore de skill dédiée. Construction différée, pas dans le périmètre actuel.
 
 **Règle dure** : ne jamais lancer un artefact discovery "parce que c'est l'étape suivante" — toujours nommer l'incertitude qu'il doit réduire avant de le lancer.
 
@@ -204,20 +264,13 @@ Détail des règles par skill : § Règles dures de chaque fichier `.claude/skil
 **État de la cible** : [pourquoi elle a été fermée — rejetée / en pause / gagnée / autre]
 ```
 
-**Déclencheur de migration vers une vraie architecture multi-workspace** (`workspaces/[slug]/` avec pointeur de cible active) — à réévaluer seulement si l'une de ces conditions devient vraie :
-- deux cibles produisent simultanément des outputs actifs (pas juste une "en sommeil")
-- une ancienne cible doit être réactivée sans interrompre la cible courante
-- les changements de cible demandent régulièrement des déplacements manuels de fichiers
-- des noms de fichiers/outputs entrent en collision
-- une skill doit lire plusieurs contextes produit dans un même workflow
-
-Tant qu'aucune de ces conditions n'est vraie, ne pas construire l'infra en avance.
+Rationale de ce choix d'architecture (alternative évaluée, critères de réévaluation future) : `CHANGELOG.md`.
 
 ---
 
 ## Le token `[feature]` dans les chemins de sortie
 
-Historique — les skills ont été construites feature par feature avant que `/pm-prioritize` et `/pm-prd` ne se réorientent vers un langage problème/outcome. `[feature]` dans `outputs/specs/[feature]/...` désigne aujourd'hui le **slug stable de l'initiative, du problème ou de l'outcome traité** — pas une feature ou une solution déjà décidée. Conservé tel quel dans les 9 skills numérotées qui le référencent (`/pm-commitment-gate`, `/pm-success-metrics`, `/pm-solution-exploration`, `/pm-prd`, `/pm-scope`, `/pm-prototype`, `/pm-tickets`, `/pm-release`, `/pm-data-analysis`) pour éviter une cascade de renommage sans bénéfice réel — le sens a changé, pas le chemin. `/pm-sprint-plan` utilise le même dossier `[feature]/` mais un fichier non numéroté (branche annexe, cf. § Sprint Planning).
+`[feature]` dans `outputs/specs/[feature]/...` désigne le **slug stable de l'initiative, du problème ou de l'outcome traité** — pas une feature ou une solution déjà décidée. Référencé dans les 9 skills numérotées (`/pm-commitment-gate`, `/pm-success-metrics`, `/pm-solution-exploration`, `/pm-prd`, `/pm-scope`, `/pm-prototype`, `/pm-tickets`, `/pm-release`, `/pm-data-analysis`). `/pm-sprint-plan` utilise le même dossier `[feature]/` mais un fichier non numéroté (branche annexe, cf. § Sprint Planning). Origine du nom et raison de sa conservation : `CHANGELOG.md`.
 
 ---
 

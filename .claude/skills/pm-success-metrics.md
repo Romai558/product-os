@@ -1,5 +1,11 @@
 # Skill — /pm-success-metrics
 
+**Rôle dans le Product OS**
+
+**Phase :** Delivery (séquencement strict) — première étape, juste après le commitment gate.
+**Question produit :** Que veut dire "réussir" concrètement pour cette initiative, avant que la solution ne soit conçue ?
+**Décision ou résultat produit :** L'outcome complet (comportement, population, baseline, cible, fenêtre, métrique, guardrails), chargé tel quel par le PRD.
+
 **Décision** : ce que "réussir" veut dire concrètement pour cette initiative (l'outcome complet), avant que la solution ne soit conçue.
 **Entrées** : `00-commitment-gate.md` (commit) ; `product-strategy.md` (NSM) ; `evidence-register.md`
 **Sortie** : `outputs/specs/[feature]/01-success-metrics.md`
@@ -10,18 +16,15 @@
 
 > Pourquoi avant le PRD : un problème qu'on s'engage à traiter sans savoir ce que "ça marche" veut dire concrètement (comportement visé, population, baseline, cible, fenêtre) invite à écrire un PRD qui rationalise une solution déjà choisie plutôt qu'un outcome mesurable. Poser l'outcome en premier force la discipline inverse.
 
-## Déclencheur
+**Utiliser quand** (`/pm-success-metrics [initiative committée]`) :
+- Juste après que `/pm-commitment-gate` a rendu la décision `commit` — avant tout PRD. Si le commitment gate n'a pas rendu `commit`, refuser de s'exécuter : renvoyer vers la boucle discovery (`investigate`) ou vers l'archivage (`kill`).
 
-- `/pm-success-metrics [initiative committée]`
-- Juste après que `/pm-commitment-gate` a rendu la décision `commit` — avant tout PRD
+**Ne pas utiliser quand** :
+- On cherche déjà à comparer des approches de solution → c'est `/pm-solution-exploration`, qui vient après et charge cet outcome, pas l'inverse.
 
-## Pré-requis
+## Exemple
 
-- `outputs/specs/[feature]/00-commitment-gate.md` — **décision `commit`**, pas `investigate` ni `kill`
-- `tools/product-os/context/product-strategy.md` — section North Star Metric
-- `tools/product-os/context/evidence-register.md` — pour ancrer population/comportement sur des preuves réelles, pas des suppositions
-
-**Si le commitment gate n'a pas rendu `commit`** : refuser de s'exécuter. Renvoyer vers la boucle discovery (si `investigate`) ou vers l'archivage de l'initiative (si `kill`).
+[`examples/onboarding-saas/01-success-metrics.md`](../../examples/onboarding-saas/01-success-metrics.md) : outcome posé pour l'activation onboarding (55% → 72% en 4 semaines), chargé tel quel ensuite par `02-solution-exploration.md` et `03-prd.md` sans être redéfini.
 
 ## Place dans le pipeline
 

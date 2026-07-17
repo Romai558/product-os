@@ -1,5 +1,11 @@
 # Skill — /pm-prototype
 
+**Rôle dans le Product OS**
+
+**Phase :** Delivery (séquencement strict) — étape 2.5, entre le scope et les tickets.
+**Question produit :** La solution est-elle visuellement prête pour le développement, et les hypothèses Value/Usability du PRD tiennent-elles toujours une fois construites concrètement ?
+**Décision ou résultat produit :** Des écrans réellement construits dans Pencil (pas juste décrits), un quality gate passé, et une vérification post-construction des hypothèses.
+
 **Décision** : la solution est-elle visuellement prête (composants, états, flow) pour le développement, et les hypothèses Value/Usability du PRD tiennent-elles toujours une fois vues concrètement construites.
 **Entrées** : `04-scope.md` (validé PM) ; `design-system.md` ; `ui-checklist.md`
 **Sortie** : `outputs/specs/[feature]/05-prototype.md` + écrans construits dans `pencils/[cible]-ds.pen`
@@ -12,17 +18,17 @@ Pas de craft UI dans Figma : c'est la réflexion UX et le raisonnement sur les c
 
 > Inspiré du workflow 5 agents Double Diamond Voyage (Mia/Theo/Jules/Eva/Max). Version allégée : 1 agent + PM en boucle courte + quality gate.
 
-## Déclencheur
+**Utiliser quand** (`/pm-prototype [chemin scope validé]`, après arbitrage PM du scope, avant `/pm-tickets`) :
+- Le scope est arbitré et il faut transformer les user stories en écrans réels avant le ticketing.
 
-- `/pm-prototype [chemin scope validé]`
-- Après relecture et arbitrage PM du scope (`04-scope.md`), avant `/pm-tickets`
+**Ne pas utiliser quand** :
+- Le scope n'est pas encore validé PM → attendre l'arbitrage.
+- On cherche du craft UI Figma poussé → cette skill priorise le raisonnement UX et les composants, pas le pixel-perfect.
 
 ## Pré-requis
 
-- `outputs/specs/[feature]/04-scope.md` — validé par le PM
-- `tools/product-os/context/design-system.md` — peut être vide (Mode B) ou rempli (Mode A). Le fichier Pencil correspondant (si Mode A) est `tools/product-os/pencils/[cible]-ds.pen`, cible = nom lu en tête de `product-facts.md`
-- `tools/product-os/standards/ui-checklist.md` — quality gate (étape 8)
-- Outils MCP Pencil : `get_editor_state`, `get_variables`, `batch_get`, `batch_design`, `get_screenshot`
+- `design-system.md` : le fichier Pencil correspondant (Mode A) est `tools/product-os/pencils/[cible]-ds.pen`, cible = nom lu en tête de `product-facts.md`
+- Outils MCP Pencil nécessaires : `get_editor_state`, `get_variables`, `batch_get`, `batch_design`, `get_screenshot`
 - Optionnel : `outputs/discovery/journey-map-*.md` — pour ancrer les écrans sur le parcours réel
 
 ## Place dans le pipeline

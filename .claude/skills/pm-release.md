@@ -1,5 +1,11 @@
 # Skill — /pm-release
 
+**Rôle dans le Product OS**
+
+**Phase :** Post-ship — gate avant le ship, puis communication après le ship.
+**Question produit :** Est-on prêt à shipper en sécurité, et comment rendre le lancement légible aux parties prenantes ?
+**Décision ou résultat produit :** Un go/no-go de launch readiness, puis des release notes + un plan de communication par partie prenante.
+
 **Décision** : est-on prêt à shipper en sécurité, et comment rendre le lancement légible aux parties prenantes.
 **Entrées** : `06-tickets.md` (ou `sprint-plan-YYYY-MM-DD.md` si utilisé) ; `launch-readiness-checklist.md` ; `product-facts.md` ; `product-strategy.md` ; optionnel `03-prd.md`
 **Sortie** : `outputs/specs/[feature]/07-release.md`
@@ -10,19 +16,12 @@
 
 Sources : inspiré de phuryn/pm-skills (release-notes + stakeholder-map).
 
-## Déclencheur
+**Utiliser quand** (`/pm-release [chemin ou nom feature]`) :
+- Avant le ship, pour passer la Launch Readiness Checklist (go/no-go).
+- Après ship en production, avant toute communication externe, pour les release notes et le plan de comm.
 
-- `/pm-release [chemin ou nom feature]`
-- **Avant le ship** pour passer la Launch Readiness Checklist (go/no-go)
-- **Après ship en production, avant communication externe** pour les release notes et le plan de comm
-
-## Pré-requis
-
-- `outputs/specs/[feature]/06-tickets.md` ou liste des tickets prêts/shippés
-- `tools/product-os/standards/launch-readiness-checklist.md` — quality gate (étape 0)
-- `tools/product-os/context/product-facts.md` — personas + features existantes
-- `tools/product-os/context/product-strategy.md` — OKRs
-- Optionnel : `03-prd.md` (problème initial + valeur visée, pour cohérence du messaging)
+**Ne pas utiliser quand** :
+- Le build n'est pas encore terminé (tickets non fermés) → ce n'est pas un point d'avancement de dev, c'est un gate de lancement + un outil de communication post-ship.
 
 ## Place dans le pipeline
 

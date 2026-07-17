@@ -40,6 +40,14 @@ Historique des décisions de design. Append-only — une entrée passée ne se r
 
 - Extrait dans un dépôt séparé, avec `context/` réinitialisé en templates génériques.
 
+## 2026-07-16 — Nettoyage documentaire (fossiles relocalisés depuis `index.md`)
+
+Contenu retiré de la documentation canonique (`tools/product-os/index.md`) pour qu'elle ne décrive que l'état actuel, préservé ici :
+
+- **Ancien statut `needs-evidence`** — le statut binaire "preuve suffisante ou pas" remplacé le 2026-07-12 par les 4 statuts nuancés (cf. entrée ci-dessus, "Refonte du pipeline") portait ce nom avant la refonte.
+- **Architecture multi-workspace évaluée puis rejetée** — un système `workspaces/[slug]/` avec pointeur de cible active a été envisagé puis écarté au profit du pattern séquentiel actuel (une seule cible active, réinitialisation par changement de cible). Cinq critères identifiés comme seuils de réévaluation future : deux cibles produisant simultanément des outputs actifs ; une ancienne cible à réactiver sans interrompre la cible courante ; des changements de cible demandant régulièrement des déplacements manuels de fichiers ; des collisions de noms de fichiers/outputs ; une skill devant lire plusieurs contextes produit dans un même workflow. Tant qu'aucun de ces critères n'est vrai, l'infrastructure multi-workspace n'est pas construite par anticipation.
+- **Origine du token `[feature]`** — les skills ont été construites feature par feature avant que `/pm-prioritize` et `/pm-prd` ne se réorientent vers un langage problème/outcome. Le token a été conservé tel quel dans les chemins de sortie plutôt que renommé, pour éviter une cascade de renommage sans bénéfice réel une fois son sens changé (slug d'initiative, pas de feature).
+
 ## Règle de gouvernance actée
 
 Toute évolution future doit suivre : **Observation → Problème identifié → Hypothèse d'amélioration → Évolution de l'architecture**, jamais l'inverse. Détail : `tools/product-os/index.md` § Gouvernance des évolutions.

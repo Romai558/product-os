@@ -1,5 +1,11 @@
 # Skill — /pm-journey-mapping
 
+**Rôle dans le Product OS**
+
+**Phase :** Discovery (boucle) — artefact conditionnel, uniquement si l'incertitude porte sur "où" dans un parcours multi-étapes.
+**Question produit :** Dans le parcours de cette persona, où se situe la friction la plus critique à adresser en priorité ?
+**Décision ou résultat produit :** Le point d'entrée recommandé pour le commitment gate — la friction la plus critique, justifiée.
+
 **Décision** : quel point de friction précis du parcours utilisateur est le point d'entrée prioritaire pour l'intervention produit.
 **Entrées** : `outputs/interviews/insights-*.md` et/ou `outputs/discovery/personas-*.md` ; `product-facts.md`
 **Sortie** : `outputs/discovery/journey-map-[persona]-[scenario]-YYYY-MM-DD.md`
@@ -11,16 +17,13 @@
 > "L'objectif c'est l'alignement, pas la perfection. La conversation pendant le mapping vaut souvent autant que l'artefact."
 > Si l'expérience traverse plusieurs équipes/systèmes (front-stage/back-stage), préférer service blueprint (à construire). Si c'est un workflow professionnel multi-outils, préférer workflow map (à construire).
 
-## Déclencheur
+**Utiliser quand** (`/pm-journey-mapping [persona] [scénario]`, dans la boucle discovery après `/pm-interview-insights` ou `/pm-ux-personas`) :
+- La sélection d'artefact discovery identifie que l'incertitude porte sur un parcours multi-étapes (où la friction apparaît).
 
-- `/pm-journey-mapping [persona] [scénario]`
-- Dans la boucle discovery, après `/pm-interview-insights` ou `/pm-ux-personas` — **seulement si cet artefact a été sélectionné**
-
-## Pré-requis
-
-- `outputs/interviews/insights-*.md`
-- `outputs/discovery/personas-*.md` si disponible
-- `tools/product-os/context/product-facts.md` — features existantes à positionner sur le journey
+**Ne pas utiliser quand** :
+- L'expérience traverse plusieurs équipes/systèmes (front-stage/back-stage) → service blueprint est plus approprié (à construire).
+- C'est un workflow professionnel interne multi-outils → workflow map est plus approprié (à construire).
+- On veut découper en features/stories → c'est le story mapping (perspective produit), pas le journey mapping (perspective utilisateur), cf. étape 5.
 
 ## Place dans le pipeline
 

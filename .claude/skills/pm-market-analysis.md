@@ -1,5 +1,11 @@
 # Skill — /pm-market-analysis
 
+**Rôle dans le Product OS**
+
+**Phase :** Discovery (boucle) — première étape recommandée.
+**Question produit :** Ce signal (retour client, feature request, move concurrent) constitue-t-il une vraie opportunité marché à creuser ?
+**Décision ou résultat produit :** Recommandation go / no-go / à monitorer sur l'opportunité.
+
 **Décision** : go / no-go / à monitorer sur une opportunité candidate issue d'un signal marché.
 **Entrées** : signal de départ (retour client, feature request, move concurrent) ; `product-facts.md` ; `product-strategy.md`
 **Sortie** : `outputs/discovery/market-[sujet]-YYYY-MM-DD.md`
@@ -12,16 +18,12 @@ Calibré pour le quotidien PM (30-60 min), pas pour un rapport investisseur. Pou
 
 Sources : inspiré de phuryn/pm-skills (competitor-analysis + market-segments + market-sizing) + structure BMAD légère.
 
-## Déclencheur
+**Utiliser quand** (`/pm-market-analysis [signal ou sujet]`) :
+- Un signal remonte (retour CS/Sales, insight discovery, move concurrent) et on veut savoir si c'est une vraie opportunité marché.
 
-- `/pm-market-analysis [signal ou sujet]`
-- Quand un signal remonte (retour CS/Sales, insight discovery, move concurrent) et qu'on veut savoir si c'est une vraie opportunité marché
-
-## Pré-requis
-
-- Un signal de départ : retour client, feature request, observation marché, move concurrent
-- `tools/product-os/context/product-facts.md` — features existantes
-- `tools/product-os/context/product-strategy.md` — positionnement actuel
+**Ne pas utiliser quand** :
+- Plusieurs opportunités candidates existent déjà et il faut choisir laquelle approfondir en premier → c'est `/pm-prioritize`.
+- On veut un deep-dive marché exhaustif type investisseur (TAM/SAM/SOM complet) → hors périmètre, cette skill reste calibrée 30-60 min (utiliser BMAD market research à la place).
 
 ## Place dans le pipeline
 

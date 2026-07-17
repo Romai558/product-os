@@ -1,5 +1,11 @@
 # Skill — /pm-prd
 
+**Rôle dans le Product OS**
+
+**Phase :** Delivery (séquencement strict) — étape de consolidation, après commitment gate + success-metrics + solution-exploration.
+**Question produit :** Le dossier (problème, outcome, approche retenue, hypothèses restantes) est-il prêt pour l'arbitrage final du PM ?
+**Décision ou résultat produit :** Un PRD au statut `draft` → `ready-for-review`, que le PM fait passer à `approved` / `rejected` / `superseded`.
+
 **Décision** : le dossier (problème, outcome, approche retenue, hypothèses restantes) est-il prêt pour l'arbitrage final du PM.
 **Entrées** : `00-commitment-gate.md` (commit) ; `01-success-metrics.md` (outcome) ; `02-solution-exploration.md` (approche retenue, validée PM) ; `product-facts.md` ; `product-strategy.md` ; `evidence-register.md`
 **Sortie** : `outputs/specs/[feature]/03-prd.md`
@@ -12,22 +18,21 @@ Le PRD décrit le problème, charge l'outcome posé par `/pm-success-metrics` et
 
 > **Les agents préparent. Le PM valide et tranche.** Ne jamais passer à `/pm-scope` sans relecture et arbitrage explicite du PM.
 
-## Déclencheur
+**Utiliser quand** (`/pm-prd [initiative committée, approche retenue]`, après `/pm-commitment-gate` + `/pm-success-metrics` + `/pm-solution-exploration`, jamais avant) :
+- L'outcome et l'approche sont déjà posés, et il faut consolider le dossier complet pour l'arbitrage PM.
 
-- `/pm-prd [initiative committée, approche retenue]`
-- Après `/pm-commitment-gate` (`commit`), `/pm-success-metrics` et `/pm-solution-exploration` — jamais avant
+**Ne pas utiliser quand** :
+- L'outcome n'est pas encore fixé → `/pm-success-metrics` d'abord.
+- Plusieurs approches n'ont pas encore été comparées → `/pm-solution-exploration` d'abord, le PRD ne doit jamais découvrir la solution.
+- On veut découper en user stories / edge cases → c'est `/pm-scope`, qui vient après un PRD `approved`.
 
 ## Pré-requis
 
-- `outputs/specs/[feature]/00-commitment-gate.md` — décision `commit`
-- `outputs/specs/[feature]/01-success-metrics.md` — outcome déjà défini
-- `outputs/specs/[feature]/02-solution-exploration.md` — approche déjà retenue et validée PM
-- `tools/product-os/context/product-facts.md` — chargé en contexte
-- `tools/product-os/context/product-strategy.md` — OKRs, positionnement
-- `tools/product-os/context/evidence-register.md` — preuves et hypothèses de l'initiative
-- Optionnel : `outputs/interviews/insights-*.md` et autres artefacts de la boucle discovery
-
 **Le gate de preuve a déjà eu lieu au commitment gate. Le choix de solution a déjà eu lieu à `/pm-solution-exploration`.** `/pm-prd` ne re-bloque pas sur "preuve insuffisante" ni ne rediscute l'approche — seule exception : si une entrée `evidence-register.md` liée à l'initiative passe à `contradicted` pendant la rédaction du PRD (découverte tardive), voir § Statuts plus bas.
+
+## Exemple
+
+[`examples/onboarding-saas/03-prd.md`](../../examples/onboarding-saas/03-prd.md) : PRD `approved` consolidant l'outcome (55%→72%) et l'approche (wizard interactif) déjà tranchés en amont, sans les rediscuter.
 
 ## Place dans le pipeline
 

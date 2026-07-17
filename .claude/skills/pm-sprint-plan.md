@@ -1,5 +1,11 @@
 # Skill — /pm-sprint-plan
 
+**Rôle dans le Product OS**
+
+**Phase :** Branche annexe (optionnelle) — après les tickets, avant le build, seulement en contexte squad/Shape Up hybride.
+**Question produit :** Comment les tickets validés se répartissent-ils dans le temps, compte tenu de la capacité de l'équipe ?
+**Décision ou résultat produit :** Un découpage en sprints (objectif, tickets, dépendances, risques par sprint).
+
 **Décision** : comment les tickets validés se répartissent dans le temps (sprints) compte tenu de la capacité de l'équipe.
 **Entrées** : `06-tickets.md` (validés) ; `product-facts.md` ; capacité de l'équipe pour le cycle
 **Sortie** : `outputs/specs/[feature]/sprint-plan-YYYY-MM-DD.md` (non numéroté — branche annexe, pas dans le séquencement principal)
@@ -10,17 +16,11 @@
 
 Utilisé dans un contexte **Shape Up hybride** (6 semaines de build redécoupées en sprints de 2 semaines). En Shape Up pur (équipe qui s'auto-organise), ce skill est optionnel — vérifier avec le Tech Lead.
 
-## Déclencheur
+**Utiliser quand** (`/pm-sprint-plan [chemin tickets]`, après validation des tickets, avant le kick-off du build) :
+- Le PM anime les rituels, ou le contexte est Shape Up hybride (6 semaines de build redécoupées en sprints de 2 semaines) — y compris en début de cycle pour caler les 3 sprints.
 
-- `/pm-sprint-plan [chemin tickets]`
-- Après validation des tickets (`06-tickets.md`) et avant le kick-off du build — **seulement si le PM anime les rituels ou si le contexte Shape Up hybride l'exige**
-- En début de cycle Shape Up pour caler les 3 sprints du build (3 × 2 semaines)
-
-## Pré-requis
-
-- `outputs/specs/[feature]/06-tickets.md` — tickets validés
-- `tools/product-os/context/product-facts.md` — pour les contraintes (run team, dépendances inter-squads)
-- Capacité de l'équipe pour le cycle (nombre de devs disponibles, jours off, autres charges)
+**Ne pas utiliser quand** :
+- La squad s'auto-organise en Shape Up pur → optionnel, vérifier avec le Tech Lead avant de l'imposer.
 
 ## Place dans le pipeline
 

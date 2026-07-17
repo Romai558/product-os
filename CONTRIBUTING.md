@@ -2,21 +2,11 @@
 
 ## Avant de proposer un changement d'architecture
 
-Ce système applique sa propre règle de gouvernance à lui-même (cf. `tools/product-os/index.md` § Gouvernance des évolutions) : toute évolution doit partir d'une **Observation** d'usage réel (quelle skill a été utilisée sur quelle initiative, ce qui a coincé), pas d'un raffinement théorique. Une proposition qui ne peut pas citer un usage concret doit d'abord être reformulée en Observation/Problème.
+Toute évolution suit la gouvernance définie dans [`tools/product-os/index.md`](tools/product-os/index.md) § Gouvernance des évolutions (Observation → Problème → Hypothèse → Évolution) — pas répétée ici pour éviter deux versions de la même règle. Une proposition qui ne peut pas citer un usage concret n'est pas prête à être discutée en architecture.
 
 ## Format des skills
 
-Chaque `.claude/skills/pm-*.md` ouvre sur 5 champs standardisés, avant toute description :
-
-```
-**Décision** : la décision produit unique que cette skill tranche ou prépare
-**Entrées** : fichiers/contexte nécessaires
-**Sortie** : chemin du fichier produit
-**Bloque si** : conditions qui empêchent l'exécution ou la progression de statut
-**Met à jour** : fichiers mémoire que cette skill écrit ou propose de modifier
-```
-
-Test de garde-fou avant d'ajouter ou modifier une skill : si elle ne peut pas se résumer en une phrase "Cette skill décide...", son découpage doit être challengé.
+Chaque `.claude/skills/pm-*.md` suit le header à 5 champs et le test de garde-fou définis dans [`tools/product-os/index.md`](tools/product-os/index.md) § Header standardisé des skills — c'est la définition canonique, ne pas la redupliquer ici.
 
 ## Linter
 

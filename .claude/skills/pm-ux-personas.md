@@ -1,5 +1,11 @@
 # Skill — /pm-ux-personas
 
+**Rôle dans le Product OS**
+
+**Phase :** Discovery (boucle) — artefact conditionnel, uniquement si l'incertitude porte sur "qui".
+**Question produit :** Quel segment/persona doit guider les décisions de design pour cette initiative ?
+**Décision ou résultat produit :** 1 à 4 personas structurées, ancrées sur des verbatims réels (ou signalées comme proto-personas si les données sont insuffisantes).
+
 **Décision** : quel segment/persona doit guider les décisions de design pour cette initiative.
 **Entrées** : `outputs/interviews/insights-*.md` (3+ entretiens, même segment) ; `product-facts.md`
 **Sortie** : `outputs/discovery/personas-[segment]-YYYY-MM-DD.md`
@@ -11,15 +17,13 @@
 > Personas basées sur des suppositions = proto-personas. Le signaler explicitement si les données sont insuffisantes.
 > Si l'incertitude porte plutôt sur la motivation/l'objectif que sur "qui", préférer JTBD (à construire). Si elle porte sur un parcours multi-étapes, préférer `/pm-journey-mapping`.
 
-## Déclencheur
+**Utiliser quand** (`/pm-ux-personas [chemin insights ou texte brut]`, après `/pm-interview-insights`, sur 3+ entretiens du même segment) :
+- La sélection d'artefact discovery (`index.md` § Sélection d'artefact) identifie que l'incertitude à réduire porte sur "qui" — des segments hétérogènes pas encore caractérisés.
 
-- `/pm-ux-personas [chemin insights ou texte brut]`
-- Dans la boucle discovery, après `/pm-interview-insights`, sur un ensemble de 3+ entretiens du même segment — **seulement si l'artefact persona a été sélectionné**
-
-## Pré-requis
-
-- Fichiers `outputs/interviews/insights-*.md` (min 2-3 entretiens, même segment)
-- `tools/product-os/context/product-facts.md` — personas existantes à enrichir ou invalider
+**Ne pas utiliser quand** :
+- L'incertitude porte sur la motivation/l'objectif plutôt que sur "qui" → JTBD est plus approprié (à construire).
+- L'incertitude porte sur où, dans un parcours, la friction apparaît → `/pm-journey-mapping`.
+- Moins de 3 entretiens du même segment sont disponibles → attendre, ou lancer `/pm-interview-insights` d'abord.
 
 ## Place dans le pipeline
 

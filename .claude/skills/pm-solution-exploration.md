@@ -1,5 +1,11 @@
 # Skill — /pm-solution-exploration
 
+**Rôle dans le Product OS**
+
+**Phase :** Delivery (séquencement strict) — entre l'outcome et le PRD.
+**Question produit :** Quelle approche de solution atteint l'outcome fixé avec le meilleur rapport risque/impact, et pourquoi écarte-t-on les autres ?
+**Décision ou résultat produit :** Une approche recommandée (validée ou overridée par le PM), avec les hypothèses Usability/Feasibility/Viability typées pour cette approche précise.
+
 **Décision** : quelle approche est la plus susceptible d'atteindre l'outcome avec un niveau de risque acceptable, et pourquoi les autres sont écartées.
 **Entrées** : `01-success-metrics.md` (outcome fixé) ; `evidence-register.md` ; `product-facts.md` (contraintes tech/stack) ; artefacts discovery pertinents si disponibles (`journey-map-*.md`, `personas-*.md`)
 **Sortie** : `outputs/specs/[feature]/02-solution-exploration.md`
@@ -10,17 +16,17 @@
 
 > **Value vs Usability/Feasibility/Viability — deux altitudes différentes.** Value (l'utilisateur veut-il que ce problème soit résolu ?) s'évalue au niveau du problème/outcome, déjà fait en amont (discovery, commitment gate). Usability, Feasibility et Viability sont des propriétés d'une solution précise — elles ne peuvent pas être évaluées sérieusement tant qu'aucune solution concrète n'existe. C'est ici, pas dans `/pm-prd`, qu'elles se typent pour de vrai.
 
-## Déclencheur
+**Utiliser quand** (`/pm-solution-exploration [initiative committée, outcome fixé]`, après `/pm-success-metrics`, avant `/pm-prd`) :
+- L'outcome est fixé et il faut comparer sérieusement plusieurs façons d'y arriver avant de rédiger le PRD.
 
-- `/pm-solution-exploration [initiative committée, outcome fixé]`
-- Après `/pm-success-metrics`, avant `/pm-prd`
+**Ne pas utiliser quand** :
+- L'outcome lui-même n'est pas encore posé → `/pm-success-metrics` d'abord.
+- Le problème n'est pas encore validé (pas de `commit`) → retour à `/pm-commitment-gate`, cette skill présuppose un engagement déjà pris.
+- On veut consolider une approche déjà choisie en document arbitrable → c'est `/pm-prd`, qui hérite le résultat d'ici sans le redécouvrir.
 
-## Pré-requis
+## Exemple
 
-- `outputs/specs/[feature]/01-success-metrics.md` — outcome déjà défini
-- `tools/product-os/context/evidence-register.md`
-- `tools/product-os/context/product-facts.md` — contraintes tech, stack, décisions structurantes
-- Optionnel : artefacts de la boucle discovery (`journey-map-*.md`, `personas-*.md`)
+[`examples/onboarding-saas/02-solution-exploration.md`](../../examples/onboarding-saas/02-solution-exploration.md) : 3 approches comparées pour l'outcome d'activation, wizard interactif avec defaults par rôle retenu (hypothèse Usability encore `weak-but-testable`, les 2 alternatives écartées chacune avec une raison précise).
 
 ## Place dans le pipeline
 

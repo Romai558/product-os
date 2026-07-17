@@ -1,5 +1,11 @@
 # Skill — /pm-prioritize
 
+**Rôle dans le Product OS**
+
+**Phase :** Discovery (boucle) — entre `/pm-market-analysis` et la boucle discovery complète, rappelable pendant la boucle.
+**Question produit :** Parmi plusieurs opportunités candidates, laquelle mérite d'entrer en boucle discovery en premier ?
+**Décision ou résultat produit :** Le Top 1 (et éventuellement un candidat en parallèle) + hypothèse de problème initiale + artefact discovery recommandé.
+
 **Décision** : quelle opportunité entre dans la boucle discovery en premier (et laquelle attend).
 **Entrées** : ≥2 opportunités candidates (sorties `/pm-market-analysis` ou décrites à la volée) ; `product-facts.md` ; `product-strategy.md` ; `evidence-register.md`
 **Sortie** : `outputs/discovery/prioritize-YYYY-MM-DD.md`
@@ -12,17 +18,13 @@
 
 Quatre frameworks au choix, pas plus — Kano (nécessite des surveys utilisateurs, c'est de la discovery pas du tri) et WSJF (pensé scaled agile, sert à convaincre un board) ne collent à aucun cas d'usage réel du Product OS solo, restent exclus. MoSCoW n'est pas ici : `/pm-scope` classe déjà les user stories en Must/Should/Nice-to-have + Won't, ça couvre MoSCoW au bon niveau (scope d'une feature déjà choisie, pas tri entre opportunités candidates). Décision actée le 2026-07-10, étendue le 2026-07-11 (ICE reste le défaut sans donnée, Value-Effort et Scorecard ajoutés comme alternatives à RICE). Source : conversation Romain.
 
-## Déclencheur
+**Utiliser quand** (`/pm-prioritize [liste d'opportunités ou dossier outputs/discovery/]`) :
+- Plusieurs signaux/opportunités sont candidats et il faut trancher lequel approfondir en premier.
+- Un entretien ou une reformulation en boucle discovery change le classement — rappelable, pas à usage unique.
 
-- `/pm-prioritize [liste d'opportunités ou dossier outputs/discovery/]`
-- Quand plusieurs signaux/opportunités sont candidats et qu'il faut trancher lequel approfondir en premier
-
-## Pré-requis
-
-- Au moins 2 opportunités candidates (sorties `/pm-market-analysis` ou décrites à la volée)
-- `tools/product-os/context/product-facts.md`
-- `tools/product-os/context/product-strategy.md` — pour le fit stratégique
-- `tools/product-os/context/evidence-register.md` — preuves déjà enregistrées sur les candidats
+**Ne pas utiliser quand** :
+- Une seule opportunité existe déjà et fait consensus → passer directement en boucle discovery, pas besoin de scorer un candidat seul.
+- La question porte sur le scope d'une feature déjà choisie (Must/Should/Won't) → c'est `/pm-scope` qui couvre ce tri-là, pas celui-ci (entre opportunités candidates).
 
 ## Place dans le pipeline
 

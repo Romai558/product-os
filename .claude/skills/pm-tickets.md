@@ -1,5 +1,11 @@
 # Skill — /pm-tickets
 
+**Rôle dans le Product OS**
+
+**Phase :** Delivery (séquencement strict) — étape 3, dernière étape avant le build.
+**Question produit :** Comment le travail se découpe-t-il en unités assignables et testables par la Tech ?
+**Décision ou résultat produit :** Des tickets créés directement dans Linear, contrat PM → Tech.
+
 **Décision** : comment le travail se découpe en unités assignables à la Tech.
 **Entrées** : `04-scope.md` (tradeoffs arbitrés) ; `03-prd.md` ; `05-prototype.md` ; `product-facts.md`
 **Sortie** : `outputs/specs/[feature]/06-tickets.md` + tickets Linear MCP
@@ -12,17 +18,14 @@ Intégration Linear via MCP : les tickets sont créés directement dans le proje
 
 > Les tickets sont le contrat PM → Tech. Chaque ticket doit être autoportant — la Tech ne doit pas avoir à demander le PRD pour comprendre ce qu'elle build.
 
-## Déclencheur
+**Utiliser quand** (`/pm-tickets [chemin scope validé]`, après arbitrage PM du scope) :
+- Le scope est arbitré, le prototype construit, et il faut transformer ça en tickets exécutables par la Tech.
 
-- `/pm-tickets [chemin scope validé]`
-- Après relecture et arbitrage PM du scope (`04-scope.md`)
+**Ne pas utiliser quand** :
+- Un tradeoff du scope reste `[ ] à arbitrer` → retour à `/pm-scope`.
+- On veut planifier dans le temps (sprints) → c'est `/pm-sprint-plan`, branche annexe optionnelle après le ticketing.
 
 ## Pré-requis
-
-- `outputs/specs/[feature]/04-scope.md` — validé par le PM (tradeoffs arbitrés)
-- `outputs/specs/[feature]/03-prd.md` — pour le contexte business
-- `outputs/specs/[feature]/05-prototype.md` — vérification post-construction des hypothèses (§ ci-dessous)
-- `tools/product-os/context/product-facts.md` — stack tech et conventions
 
 **Gate solution encore valide** : si `05-prototype.md` signale une hypothèse VAL/USA passée `contradicted` dans `evidence-register.md`, refuser de s'exécuter — retour à `/pm-prd` (ou `/pm-commitment-gate` si la remise en cause est profonde) avant de reprendre le ticketing. Ne jamais transformer un prototype en tickets si la solution qu'il documente ne répond plus au problème validé.
 
