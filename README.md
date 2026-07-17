@@ -47,10 +47,10 @@ Pas un pipeline strictement linéaire : la Problem Discovery se déroule en bouc
 | **Problem Discovery** | Preuves de valeur consolidées, prêtes pour l'engagement | Le problème, le segment et l'espace de solutions possibles sont-ils compris ? | Verbatims, écarts dit/fait, personas, parcours | `/pm-interview-insights`, `/pm-ux-personas`, `/pm-journey-mapping` |
 | **Commitment Gate** | `KILL` / `INVESTIGATE` / `COMMIT` | A-t-on assez appris pour s'engager ? | Confiance globale, fit stratégique | `/pm-commitment-gate` |
 | **Solution Discovery** | Approche retenue, alternatives écartées avec raison | Quelle approche atteint l'outcome au meilleur rapport risque/impact ? | Hypothèses d'utilisabilité, de faisabilité, de viabilité, par approche | `/pm-success-metrics`, `/pm-solution-exploration` |
-| **Delivery** | PRD arbitré (`approved`) → scope tradeoffs arbitrés → prototype validé (quality gate) → tickets exécutables | Le dossier est-il prêt, et comment se découpe-t-il en exécution ? | Hypothèses restantes, quality gates, tradeoffs arbitrés | `/pm-prd`, `/pm-scope`, `/pm-prototype`, `/pm-tickets` |
+| **Delivery** | Consolider l'engagement (PRD `approved`) → arbitrer le scope → valider l'expérience (quality gate) → rendre l'exécution actionnable (tickets) | Le dossier est-il prêt, et comment se découpe-t-il en exécution ? | Hypothèses restantes, quality gates, tradeoffs arbitrés | `/pm-prd`, `/pm-scope`, `/pm-prototype`, `/pm-tickets` |
 | **Post-ship Learning** | `STOP` / `ITERATE` / `SCALE` / `ROLLBACK` | Les résultats réels confirment-ils l'engagement initial ? | Adoption, activation, rétention, feedback, impact économique | `/pm-release`, `/pm-data-analysis` |
 
-Delivery n'est pas une étape unique : c'est une séquence de 4 décisions (consolidation → arbitrage du scope → validation visuelle → découpage en tickets), pas une boîte noire entre le PRD et les tickets.
+Delivery n'est pas une étape unique : c'est une séquence de 4 décisions (consolider l'engagement → arbitrer le scope → valider l'expérience → rendre l'exécution actionnable), pas une boîte noire entre le PRD et les tickets.
 
 `/pm-sprint-plan` est une capacité annexe optionnelle (planification dans le temps), hors de ce modèle par nature.
 
@@ -83,7 +83,23 @@ Le modèle de pilotage produit décrit des décisions. Les capacités du Product
               Pencil · Linear · GitHub
 ```
 
+### La mémoire produit (Product Knowledge)
+
+- `product-facts.md` — faits et connaissances considérés comme vrais sur le produit
+- `product-strategy.md` — cap, principes et contraintes stratégiques
+- `evidence-register.md` — hypothèses, preuves, niveaux d'incertitude et contradictions
+- `decision-log.md` — décisions prises, raisons et conséquences
+
+Ces quatre fichiers permettent aux capacités de reprendre le contexte existant, de mettre à jour les preuves, et de conserver la trace des arbitrages — jamais de deviner une information manquante. Détail complet : [`tools/product-os/index.md`](tools/product-os/index.md) § Structure des fichiers.
+
 ## Où commencer
+
+**Encore un doute entre les premières commandes ?**
+
+- Signal brut ou évolution de marché, rien d'identifié encore → `/pm-market-analysis`
+- Plusieurs opportunités déjà identifiées, à comparer → `/pm-prioritize`
+- Une opportunité déjà instruite, décision d'investissement à prendre → `/pm-commitment-gate`
+- Solution déjà engagée (post-`COMMIT`), à cadrer et livrer → `/pm-prd`
 
 **Par phase du modèle** — cf. le tableau ci-dessus.
 
