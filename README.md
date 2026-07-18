@@ -2,7 +2,11 @@
 
 **From signals to product decisions — explicit, traceable, reproducible.**
 
-Product OS améliore la qualité, la traçabilité et la reproductibilité des décisions produit. Ce n'est pas un système qui automatise la rédaction de documents : c'est un modèle de pilotage produit — 7 phases, une décision explicite à chaque étape, une mémoire persistante — exécuté par 15 capacités agentiques dans Claude Code.
+Les décisions produit se prennent souvent vite, sans preuves consolidées ni trace du raisonnement qui les a motivées — au risque de refaire les mêmes erreurs, ou de ne plus savoir pourquoi un choix a été fait.
+
+Product OS améliore la qualité, la traçabilité et la reproductibilité des décisions produit.
+
+C'est un modèle de pilotage produit — 7 phases, une décision explicite à chaque étape, une mémoire persistante — exécuté par 15 capacités agentiques dans Claude Code.
 
 *(Une capacité — ou "skill" dans Claude Code — est une instruction structurée et versionnée dans ce repository : un moyen d'exécuter une décision du modèle, pas une fin en soi.)*
 
@@ -107,14 +111,14 @@ Ces quatre fichiers permettent aux capacités de reprendre le contexte existant,
 
 | Besoin | Capacité |
 |---|---|
-| Comprendre un signal ou un marché | `/pm-market-analysis` |
-| Prioriser plusieurs opportunités | `/pm-prioritize` |
-| Mener une discovery (entretiens, personas, parcours) | `/pm-interview-insights`, `/pm-ux-personas`, `/pm-journey-mapping` |
+| Évaluer si un signal constitue une opportunité | `/pm-market-analysis` |
+| Décider quelle opportunité poursuivre en premier | `/pm-prioritize` |
+| Valider le problème, le segment ou le parcours utilisateur | `/pm-interview-insights`, `/pm-ux-personas`, `/pm-journey-mapping` |
 | Décider d'investir | `/pm-commitment-gate` |
-| Spécifier (outcome, solution, PRD) | `/pm-success-metrics`, `/pm-solution-exploration`, `/pm-prd` |
-| Prototyper une solution | `/pm-prototype` |
-| Livrer (scope, tickets, sprint) | `/pm-scope`, `/pm-tickets`, `/pm-sprint-plan` |
-| Apprendre après lancement | `/pm-release`, `/pm-data-analysis` |
+| Définir l'outcome, choisir l'approche, arbitrer le dossier | `/pm-success-metrics`, `/pm-solution-exploration`, `/pm-prd` |
+| Valider qu'une solution est prête pour le développement | `/pm-prototype` |
+| Découper le travail et le rendre exécutable | `/pm-scope`, `/pm-tickets`, `/pm-sprint-plan` |
+| Décider de la suite après lancement | `/pm-release`, `/pm-data-analysis` |
 
 **Par niveau de lecture** :
 
@@ -126,7 +130,7 @@ Ces quatre fichiers permettent aux capacités de reprendre le contexte existant,
 
 ## Exemple
 
-[`examples/onboarding-saas/`](examples/onboarding-saas/) — un cas fictif mais réaliste qui traverse Commitment Gate → Solution Discovery → Delivery, et montre comment chaque fichier hérite de ce que le précédent a tranché, sans le redéfinir.
+[`examples/onboarding-saas/`](examples/onboarding-saas/) — un cas fictif mais réaliste qui traverse Commitment Gate → Solution Discovery → PRD (première décision de Delivery), et montre comment chaque fichier hérite de ce que le précédent a tranché, sans le redéfinir. Le reste de Delivery (scope, prototype, tickets) et le Post-ship ne sont pas encore couverts par cet exemple.
 
 ## Pourquoi Product OS
 
